@@ -7,10 +7,14 @@ const imageCD = $('.image--turn');
 const audio = $('#audio');
 const cd = $('.content__cd');
 const playBtn = $('.btn--toggle--play');
+const nextBtn = $('.btn--next');
+const prevBtn = $('.btn--prev');
+const randomBtn = $('.btn--random');
 
 const app = {
     currentIndex: 0,
     isPlaying: false,
+    isRandom: false,
     songs: [
         {   
             name: 'Song 1',
@@ -101,11 +105,17 @@ const app = {
     handleEvent: function() {
         const _this = this;
         const cdWidth = cd.offsetWidth;
-        console.log(cd.offsetWidth);
+
+        const cdThumbAnimation = cd.animate([
+            {transform: 'rotate(360deg)'}
+        ], {
+            duration: 10000,
+            iterations: Infinity
+        });
+        cdThumbAnimation.pause();
 
         document.onscroll = () => {
             const scrollTop = document.documentElement.scrollTop;
-            console.log(scrollTop);
             const newCdWidth = cdWidth - scrollTop;
             cd.style.width = newCdWidth > 0 ? newCdWidth + 'px' : 0;
             cd.style.opacity = newCdWidth / cdWidth;
@@ -123,18 +133,68 @@ const app = {
         audio.onplay = () => {
             _this.isPlaying = true;
             player.classList.add('playing');
+            cdThumbAnimation.play();
         };
         audio.onpause = () => {
             _this.isPlaying = false;
             player.classList.remove('playing');
+            cdThumbAnimation.pause();
         };
-        
+        audio.ontimeupdate = () => {
+            const progressPersen = Math.floor((audio.currentTime / audio.duration) * 100);
+            progress.value = progressPersen;
+        };
+        progress.onchange = (e) => {
+            const seekTime = audio.duration * e.target.value / 100;
+            audio.currentTime = seekTime;
+        };
+        nextBtn.onclick = () => {
+            if (_this.isRandom) {
+                _this.playRandomSong();
+            }
+            else {
+                _this.nextSong();
+            }
+            _this.nextSong();
+            audio.play();
+        };
+        prevBtn.onclick = () => {
+            _this.prevSong();
+            audio.play();
+        };
+        randomBtn.onclick = () => {
+            _this.isRandom = !_this.isRandom;
+            randomBtn.classList.toggle('active', _this.isRandom);
+            
+        };
     },
     loadCurrentSong: function() {
 
         heading.textContent = this.currentSong.name;
         imageCD.style.backgroundImage = `url('${this.currentSong.image}')`;
         audio.src = this.currentSong.path;
+    },
+    nextSong: function() {
+        this.currentIndex++;
+        if (this.currentIndex >= this.songs.length) {
+            this.currentIndex = 0;
+        };
+        this.loadCurrentSong();
+    },
+    prevSong: function() {
+        this.currentIndex--;
+        if (this.currentIndex < 0) {
+            this.currentIndex = this.songs.length - 1;
+        };
+        this.loadCurrentSong();
+    },
+    playRandomSong: function() {
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * this.songs.length);
+        } while (newIndex == this.currentIndex)
+        this.currentIndex = newIndex;
+        this.loadCurrentSong();
     },
 
     start: function() {
@@ -147,15 +207,16 @@ const app = {
 
         this.render();
     }
+
 };
 app.start();
 
-// <!-- 1 Render songs 
-// 2 Scroll top 
-// 3 Play/pause/seek 
-// 4 CD rotates 
-// 5 Next / prev 
-// 6 Random 
+// <!-- 1 Render songs x
+// 2 Scroll top x
+// 3 Play/pause/seek x
+// 4 CD rotates x
+// 5 Next / prev x
+// 6 Random x
 // 7 Next/ Repeat when ended 
 // 8 Active song 
 // 9 Scroll active song into view

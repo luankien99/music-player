@@ -102,6 +102,10 @@ html {
 
  }
 
+ .btn--random.active {
+    color: rgb(226, 19, 19);
+ }
+
 .line--change {
 
 }
