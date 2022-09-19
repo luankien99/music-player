@@ -7,7 +7,6 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
-    <script src="./main.js"></script>
     <title>Music Player</title>
 </head>
 <body>
@@ -18,16 +17,16 @@
             <div class="header__content">
                 
                 <div class="header__item--left">
-                    <i class="ti-angle-down"></i>
+                    <i class="ti ti-angle-down"></i>
                 </div>
                 
                 <div class="header__status">
-                    <p class="nowplaying">Now playing:</p>
-                    <h4>Nevada</h4>
+                    <h4>Now playing:</h4>
+                    <h2>Nevada</h2>
                 </div>
     
                 <div class="header__item--right">
-                    <i class="ti-plus"></i>
+                    <i class="ti ti-plus"></i>
                 </div>
             </div>
         </div>
@@ -35,47 +34,41 @@
         <!-- Body -->
         <div id="content">
             <div class="content__handle content__handle--bgr">
-                <div class="content__image">
-                    <img class="image--turn" src="./assets/images/AcMa.jfif" alt="">
+                <div class="content__cd image--turn" 
+                    style="background-image: url('./assets/images/image1.jpg');">
                 </div>
-                
+                <!-- Control -->
                 <div class="content__items">
-                    <div class="item__buttons">
-                        <i class="btn__item ti-loop"></i>
+                    <div class="item__buttons btn--repeat">
+                        <i class="ti ti-loop"></i>
                     </div>
                     
-                    <div class="item__buttons">
-                        <i class="btn__item ti-control-backward"></i>
+                    <div class="item__buttons btn--prev">
+                        <i class="ti ti-control-backward"></i>
                     </div>
                     
-                    <div class="item__buttons">
-                        <i class="btn__item ti-control-play"></i>
-                        <!-- <i class="btn__item ti-control-pause"></i> -->
+                    <div class="item__buttons btn--toggle--play">
+                        <i class="ti btn--pause ti-control-pause"></i>
+                        <i class="ti btn--play ti-control-play"></i>
                     </div>
                     
-                    <div class="item__buttons">
-                        <i class="btn__item ti-control-forward"></i>
+                    <div class="item__buttons btn--next">
+                        <i class="ti ti-control-forward"></i>
                     </div>
                     
-                    <div class="item__buttons">
-                        <i class="btn__item ti-control-shuffle"></i>
+                    <div class="item__buttons btn--random">
+                        <i class="ti ti-control-shuffle"></i>
                     </div>
                 </div>
 
                 <div class="content__change">
-                    <div class="line--change"></div>
+                    <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
+                    <audio id="audio" src=""></audio>
                 </div>
             </div>
-
+            <!-- Play List -->
             <div class="content__lists">
-                <ul class="content__lists--ul">
-                    <li class="content__lists--li">
-                        <img src="" alt="">
-                        <h5>Ten bai hat</h5>
-                        <p>Ca si</p>
-                        <i class="ti-more-alt"></i>
-                    </li>
-                </ul>
+                
             </div>
         </div>   
 
@@ -83,26 +76,27 @@
         <div id="footer">
             <div class="footer__items">
                 <div class="footer__items--i">
-                    <i class="ti-home"></i>
+                    <i class="ti ti-home"></i>
                 </div>
 
                 <div class="footer__items--i">
-                    <i class="ti-music-alt"></i>
+                    <i class="ti ti-music-alt"></i>
                 </div>
 
                 <div class="footer__items--i">
-                    <i class="ti-user"></i>
+                    <i class="ti ti-user"></i>
                 </div>
 
                 <div class="footer__items--i">
-                    <i class="ti-search"></i>
+                    <i class="ti ti-search"></i>
                 </div>
 
                 <div class="footer__items--i">
-                    <i class="ti-align-justify"></i>
+                    <i class="ti ti-align-justify"></i>
                 </div>
             </div>
         </div>
     </div>
+    <script src="./main.js"></script>
 </body>
 </html>
