@@ -41,11 +41,11 @@ html {
 }
 
 .content__handle {
-    margin-top: 12px;
+    /* margin-top: 12px; */
 }
 
 .content__handle--bgr {
-    background-image: linear-gradient( 45deg, rgb(65, 88, 208) 0%, rgb(200, 80, 192) 50%, rgb(255, 204, 112) 100% );
+    background-image: linear-gradient( 45deg, rgb(144, 66, 218) 0%, rgb(200, 80, 192) 50%, rgb(255, 204, 112) 100% );
 }
 
 .content__cd {
@@ -98,11 +98,14 @@ html {
  #progress {
     width: 100%;
     height: 8px;
-    margin: 12px;
+    margin: 8px 12px 24px;
 
  }
 
  .btn--random.active {
+    color: rgb(226, 19, 19);
+ }
+ .btn--repeat.active {
     color: rgb(226, 19, 19);
  }
 
@@ -129,6 +132,18 @@ html {
     border-radius: 5px;
     box-shadow: 0 2px 3px rgb(0 0 0 / 10%);
     width: 100%;
+}
+
+.song:active {
+    opacity: 0.8;
+}
+
+.song.active {
+    background-color: rgb(238, 8, 161);
+}
+
+.song.ative .body__list, .song.ative .option {
+    color: #fff !important;
 }
 
 .thumb {
@@ -164,7 +179,7 @@ html {
 #footer {
     height: 48px;
     width: 100%;
-    background-color: rgb(74, 14, 185);
+    background-color: rgb(238, 8, 161);
     color: #000;
     position: fixed;
     bottom: 0;
